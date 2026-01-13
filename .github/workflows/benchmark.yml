@@ -1,0 +1,29 @@
+name: CPU Benchmark Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  run-benchmark:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install sysbench
+      run: sudo apt-get update && sudo apt-get install -y sysbench
+
+    - name: Run CPU benchmark
+      run: python3 scripts/run_benchmark.py
+
+    - name: Parse benchmark results
+      run: python3 scripts/parse_results.py
+
+    - name: Upload results
+      uses: actions/upload-artifact@v4
+      with:
+        name: cpu-benchmark-results
+        path: benchmarks/
