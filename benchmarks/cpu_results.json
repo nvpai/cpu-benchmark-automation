@@ -1,0 +1,7 @@
+{
+  "timestamp": "2026-01-13T21:24:51.545105",
+  "events_per_second": 47195862.84,
+  "total_time_sec": 10.0002,
+  "threads": 4,
+  "tool": "sysbench"
+}
